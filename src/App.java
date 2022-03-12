@@ -15,15 +15,22 @@ public class App {
         int answer = 0;
         int size=board[0].length-1;
         Map<Integer,Integer>selectTimes=new HashMap<>();
-        List<Integer>cart=new ArrayList<>();
+        int[] cart=new int[1000];
         for(int move:moves){
             int realAddress=move-1;
             int selectTime=Optional.ofNullable(selectTimes.get(realAddress)).orElseGet(()->0);
-            System.out.println( board[realAddress][size-selectTime]);
-            selectTimes.replace(realAddress, selectTime+=1);
+            //System.out.println(selectTime);
+            int num=board[realAddress][size-selectTime];
+            selectTime+=1;
+            if(selectTime==1){
+                selectTimes.put(realAddress, selectTime);
+            }else{
+                selectTimes.replace(realAddress, selectTime);
+            }
+            System.out.println(num);
         }
-
-        //0/11/303/02
+        //1/53/51214
+        //0/11/30302
         return answer;
     }
     
