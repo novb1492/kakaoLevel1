@@ -18,10 +18,20 @@ public class App {
         Stack<Integer>carts=new Stack<>();
        for(int move:moves){
             int[] line=board[move-1];
-            for(int i=line.length-1;i<line.length;i++){
-                System.out.println(line[i]);
+            System.out.println(move);
+            System.out.println(Arrays.toString(line));
+            for(int i=line.length-1;i>0;i--){
+                int num=line[i];
+                System.out.println("num:"+num);
+                if(num!=0){
+                    carts.push(num);
+                    board[move-1][i]=0;
+                    break;
+                }
             }
         }
+        //15351214
+        //01130302
         System.out.println(carts.toString());
         int beforeNum=0;
         while(true){
