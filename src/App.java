@@ -15,7 +15,28 @@ public class App {
     public static int solution(int[][] board, int[] moves) {
         int answer = 0;
         int size=board[0].length-1;
-    
+        Map<Integer,Integer>selectTimes=new HashMap<>();
+        Stack<Integer>carts=new Stack<>();
+       for(int move:moves){
+            int selectTime=Optional.ofNullable(selectTimes.get(move)).orElseGet(()->0);
+            int a=size-selectTime;
+            int num=0;
+            if(a<0){
+                num=0;
+            }else{
+                num=board[move-1][a];
+            }
+            selectTime+=1;
+            if(selectTime==1){
+                selectTimes.put(move, selectTime);
+            }else{
+                selectTimes.replace(move, selectTime);
+            }
+            if(num!=0){
+                carts.push(num);
+            }
+        }
+        System.out.println(carts.toString());
         return answer;
     }
     
