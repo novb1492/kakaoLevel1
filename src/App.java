@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Stack;
+import java.util.Map.Entry;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,9 +14,9 @@ public class App {
         System.out.println(Arrays.toString(solution(n,stages)));
     }
     public static int[] solution(int N, int[] stages) {
-        Map<Integer,String>stageAndPerson=new HashMap<>();
+        Map<Integer,String>stageAndPersons=new HashMap<>();
         for(int stage:stages){
-            String[] personAndCount=Optional.ofNullable(stageAndPerson.get(stage)).orElseGet(()->"0,0").split(",");
+            String[] personAndCount=Optional.ofNullable(stageAndPersons.get(stage)).orElseGet(()->"0,0").split(",");
             int person=Integer.parseInt(personAndCount[0]);
             person+=1;
             int count=0;
@@ -25,10 +26,16 @@ public class App {
                 }
             }
             String personAndCounts=person+","+count;
-            stageAndPerson.put(stage, personAndCounts);
+            stageAndPersons.put(stage, personAndCounts);
         }
-        System.out.println(stageAndPerson.toString());
-        
+        System.out.println(stageAndPersons.toString());
+        for(Entry<Integer, String> stageAndPerson:stageAndPersons.entrySet()){
+            String[] personAndCount=stageAndPerson.getValue().split(",");
+            int person=Integer.parseInt(personAndCount[0]);
+            int count=Integer.parseInt(personAndCount[1]);
+            stageAndPersons.replace(stageAndPerson.getKey(),Double.toString((double)person/count));
+        }
+        System.out.println(stageAndPersons.toString());
         int[] answer = new int[N];
         return answer;
     }
