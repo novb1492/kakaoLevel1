@@ -15,7 +15,7 @@ public class App {
         int answer = 0;
         int size=board[0].length-1;
         Map<Integer,Integer>selectTimes=new HashMap<>();
-        int[] cart=new int[1000];
+        int[] cart=new int[1001];
         for(int move:moves){
             int realAddress=move-1;
             int selectTime=Optional.ofNullable(selectTimes.get(realAddress)).orElseGet(()->0);
@@ -27,7 +27,16 @@ public class App {
             }else{
                 selectTimes.replace(realAddress, selectTime);
             }
-            System.out.println(num);
+            if(num!=0){
+                int count=cart[num];
+                count+=1;
+                if(count==2){
+                    answer+=2;
+                    cart[num]=0;
+                }else{
+                    cart[num]=count;
+                }
+            }
         }
         //1/53/51214
         //0/11/30302
