@@ -1,6 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -10,6 +13,17 @@ public class App {
     }
     public static int solution(int[][] board, int[] moves) {
         int answer = 0;
+        int size=board[0].length-1;
+        Map<Integer,Integer>selectTimes=new HashMap<>();
+        List<Integer>cart=new ArrayList<>();
+        for(int move:moves){
+            int realAddress=move-1;
+            int selectTime=Optional.ofNullable(selectTimes.get(realAddress)).orElseGet(()->0);
+            System.out.println( board[realAddress][size-selectTime]);
+            selectTimes.replace(realAddress, selectTime+=1);
+        }
+
+        //0/11/303/02
         return answer;
     }
     
