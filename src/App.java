@@ -16,22 +16,13 @@ public class App {
         int answer = 0;
         int size=board[0].length-1;
         Map<Integer,Integer>selectTimes=new HashMap<>();
-        Stack<Integer>stacks=new Stack<>();
+        Stack<Integer>carts=new Stack<>();
         for(int move:moves){
-            int realAddress=move-1;
-            int selectTime=Optional.ofNullable(selectTimes.get(realAddress)).orElseGet(()->0);
-            //System.out.println(selectTime);
-            int num=board[realAddress][size-selectTime];
+            int selectTime=Optional.ofNullable(selectTimes.get(move)).orElseGet(()->0);
             selectTime+=1;
-            if(selectTime==1){
-                selectTimes.put(realAddress, selectTime);
-            }else{
-                selectTimes.replace(realAddress, selectTime);
-            }
-            if(num!=0){
-                stacks.push(num);
-            }
+            selectTimes.put(move, selectTime);
         }
+        System.out.println(selectTimes.toString());
         //1/53/51214
         //0/11/30302
         return answer;
