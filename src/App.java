@@ -44,11 +44,13 @@ public class App {
                 if(stageAndPerson.getValue()<s.getValue()){
                     postion+=1;
                 }else if(stageAndPerson.getValue().equals(s.getValue())){
-                    System.out.println("b");
+                    if(s.getKey()<stageAndPerson.getKey()){
+                        postion+=1;
+                    }
                 }
             }
-           // System.out.println("po: "+postion);
-           // answer[postion]=stageAndPerson.getKey();
+           System.out.println("po: "+postion);
+           answer[postion]=stageAndPerson.getKey();
             postion=0;
         }
         return answer;
