@@ -31,11 +31,13 @@ public class App {
                 x+=1;
             }
         }
+        System.out.println(xy.toString());
         Map<String,String>useingHandAndNum=new HashMap<>();
         useingHandAndNum.put("L", "*");
         useingHandAndNum.put("R", "#");
         for(int num:numbers){
             if(num==1||num==4||num==7){
+                answer=answer+"L";
                 useingHandAndNum.replace("L", Integer.toString(num));
             }else if(num==3||num==6||num==9){
                 answer=answer+"R";
@@ -44,7 +46,33 @@ public class App {
                 String[] leftXY=xy.get(useingHandAndNum.get("L")).split(",");
                 String[] rightXY=xy.get(useingHandAndNum.get("R")).split(",");
                 String[] numXY=xy.get(Integer.toString(num)).split(",");
-                System.out.println(Arrays.toString(numXY));             
+                int numx=Integer.parseInt(numXY[0]);
+                int numy=Integer.parseInt(numXY[1]);
+                int leftx=Integer.parseInt(leftXY[0]);
+                int lefty=Integer.parseInt(leftXY[1]);
+                int rightx=Integer.parseInt(rightXY[0]);
+                int righty=Integer.parseInt(rightXY[1]);
+                int minusLeftX=Math.abs(numx-leftx);
+                int minusLeftY=Math.abs(numy-lefty);
+                int minusRightX=Math.abs(numx-rightx);
+                int minusRightY=Math.abs(numy-righty);
+                int leftTotal=minusLeftX+minusLeftY;
+                int rightTotal=minusRightX+minusRightY;
+                if(leftTotal==rightTotal){
+                    if(hand.equals("right")){
+                        answer=answer+"R";
+                        useingHandAndNum.replace("R", Integer.toString(num));
+                    }else{
+                        answer=answer+"L";
+                        useingHandAndNum.replace("L", Integer.toString(num));
+                    }
+                }else if(leftTotal<rightTotal){
+                    answer=answer+"L";
+                    useingHandAndNum.replace("L", Integer.toString(num));
+                }else{
+                    answer=answer+"R";
+                    useingHandAndNum.replace("R", Integer.toString(num));
+                }
             }
         }
         
