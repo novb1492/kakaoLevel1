@@ -37,7 +37,20 @@ public class App {
             }
         }
         System.out.println(carts.toString());
-        return answer;
+        int beforeNum=0;
+        while(true){
+           if(carts.empty()){
+               break;
+           }
+           int nowNum=carts.peek();
+           if(beforeNum==nowNum){
+               answer+=1;
+           }
+           beforeNum=carts.peek();
+           carts.pop();
+        }
+        System.out.println(carts.toString());
+        return answer*2;
     }
     
     
