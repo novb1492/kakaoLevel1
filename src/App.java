@@ -13,6 +13,7 @@ public class App {
         System.out.println(solution(board,moves));
     }
     public static int solution(int[][] board, int[] moves) {
+        //아 알겟따 0은 비워져 있는거야 
         int answer = 0;
         int size=board[0].length-1;
         Map<Integer,Integer>selectTimes=new HashMap<>();
