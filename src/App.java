@@ -13,22 +13,32 @@ public class App {
         System.out.println(solution(board,moves));
     }
     public static int solution(int[][] board, int[] moves) {
-        //아 알겟따 0은 비워져 있는거야 
         int answer = 0;
         Stack<Integer>carts=new Stack<>();
-        System.out.println(Arrays.toString(board[3]));
-       for(int move:moves){
+        for(int move:moves){
             int num=0;
             for(int i=0;i<board.length;i++){
-                if(board[i][move-1]!=0){
-                    carts.push(board[i][move-1]);
+                num=board[i][move-1];
+                if(num!=0){
                     board[i][move-1]=0;
                     break;
                 }
             }
+            if(num!=0){
+                try {
+                    int beforeNum=carts.peek();
+                    if(beforeNum==num){
+                        answer+=2;
+                        carts.pop();
+                    }else{
+                        carts.push(num);
+                    }
+                } catch (Exception e) {
+                   carts.push(num);
+                }
+            }
            
         }
-        System.out.println(Arrays.toString(board[3]));
         System.out.println(carts.toString());
         //15351214
         //01130302
