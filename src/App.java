@@ -14,7 +14,7 @@ public class App {
         System.out.println(Arrays.toString(solution(n,stages)));
     }
     public static int[] solution(int N, int[] stages) {
-        Map<Integer,String>stageAndPersons=new HashMap<>();
+        Map<Integer,Double>stageAndPersons=new HashMap<>();
         for(int i=1;i<=N;i++){
             int count=0;
             int totalCount=0;
@@ -30,20 +30,16 @@ public class App {
                     maxCount+=1;
                 }
             }
+            double personAndCounts=0.0;
             if(i==N){
-                String personAndCounts=maxCount+","+totalCount;
-                stageAndPersons.put(i, personAndCounts);
+                personAndCounts=(double)maxCount/totalCount;
             }else{
-                String personAndCounts=count+","+totalCount;
-                stageAndPersons.put(i, personAndCounts);
+                personAndCounts=(double)count/totalCount;
             }
-        }
-        System.out.println(stageAndPersons.toString());
-        for(Entry<Integer, String> stageAndPerson:stageAndPersons.entrySet()){
-            String[] personAndCount=stageAndPerson.getValue().split(",");
-            int person=Integer.parseInt(personAndCount[0]);
-            int count=Integer.parseInt(personAndCount[1]);
-            stageAndPersons.replace(stageAndPerson.getKey(),Double.toString((double)person/count));
+            if(personAndCounts==1.0){
+                personAndCounts=0;
+            }
+            stageAndPersons.put(i, personAndCounts);
         }
         System.out.println(stageAndPersons.toString());
         int[] answer = new int[N];
