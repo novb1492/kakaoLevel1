@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Stack;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -15,7 +16,7 @@ public class App {
         int answer = 0;
         int size=board[0].length-1;
         Map<Integer,Integer>selectTimes=new HashMap<>();
-        int[] cart=new int[1001];
+        Stack<Integer>stacks=new Stack<>();
         for(int move:moves){
             int realAddress=move-1;
             int selectTime=Optional.ofNullable(selectTimes.get(realAddress)).orElseGet(()->0);
@@ -28,14 +29,7 @@ public class App {
                 selectTimes.replace(realAddress, selectTime);
             }
             if(num!=0){
-                int count=cart[num];
-                count+=1;
-                if(count==2){
-                    answer+=2;
-                    cart[num]=0;
-                }else{
-                    cart[num]=count;
-                }
+                stacks.push(num);
             }
         }
         //1/53/51214
