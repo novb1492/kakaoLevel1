@@ -16,37 +16,26 @@ public class App {
         //아 알겟따 0은 비워져 있는거야 
         int answer = 0;
         Stack<Integer>carts=new Stack<>();
-        carts.push(0);
+        System.out.println(Arrays.toString(board[3]));
        for(int move:moves){
             int num=0;
-            int[] line=board[move-1];
-           // System.out.println(move);
-           // System.out.println(Arrays.toString(line));
-            for(int i=line.length-1;i>0;i--){
-               // System.out.println("i:"+i);
-                num=line[i];
-                //System.out.println("num:"+num);
-                if(num!=0){
-                    board[move-1][i]=0;
+            for(int i=0;i<board.length;i++){
+                if(board[i][move-1]!=0){
+                    carts.push(board[i][move-1]);
+                    board[i][move-1]=0;
                     break;
                 }
             }
-            if(num!=0){
-                System.out.println(num);
-                if(carts.peek()==num){
-                    answer+=1;
-                    carts.pop();
-                }else{
-                    carts.push(num);
-                }
-            }
+           
         }
+        System.out.println(Arrays.toString(board[3]));
+        System.out.println(carts.toString());
         //15351214
         //01130302
 
         
         
-        return answer*2;
+        return answer;
     }
     
     
