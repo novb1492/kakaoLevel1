@@ -17,7 +17,6 @@ public class App {
     public static String[] solution(int n, int[] arr1, int[] arr2) {
         String[] answer = new String[n];
         Map<Integer,String>arr1AndArr2=new HashMap<>();
-        int len=n;
         for(int i=0;i<n;i++){
             String two=tenToTwo(arr1[i]);
             arr1AndArr2.put(i, two);
