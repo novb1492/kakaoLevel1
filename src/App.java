@@ -9,47 +9,12 @@ import java.util.Map.Entry;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int n=5;
-        int[] arr1={9, 20, 28, 18, 11};
-        int[] arr2={30, 1, 21, 17, 28};
-        System.out.println(Arrays.toString(solution(n,arr1,arr2)));
+        String dartResult="1S2D*3T";
+        System.out.println(solution(dartResult));
     }
-    public static String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = new String[n];
-        for(int i=0;i<n;i++){
-            String arr1Two=tenToTwo(arr1[i]);
-            String arr2Two=tenToTwo(arr2[i]);
-            if(arr1Two.length()<n){
-                int minus=n-arr1Two.length();
-                for(int ii=0;ii<minus;ii++){
-                    arr1Two="0"+arr1Two;
-                }
-            }
-            if(arr2Two.length()<n){
-                int minus=n-arr2Two.length();
-                for(int ii=0;ii<minus;ii++){
-                    arr2Two="0"+arr2Two;
-                }
-            }
-            System.out.println(arr1Two);
-            System.out.println(arr2Two);
-            char[] arr1Chars=arr1Two.toCharArray();
-            char[] arr2Chars=arr2Two.toCharArray();
-            String line="";
-            int len=arr1Chars.length;
-            for(int ii=0;ii<len;ii++){
-                if(arr1Chars[ii]=='1'||arr2Chars[ii]=='1'){
-                    line=line+"#";
-                }else{
-                    line=line+" ";
-                }
-            }
-            answer[i]=line;
-        }
+    public static int solution(String dartResult) {
+        int answer = 0;
         return answer;
-    }
-    private static String tenToTwo(int num) {
-        return Integer.toBinaryString(num);
     }
     
     
