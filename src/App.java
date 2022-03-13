@@ -18,17 +18,28 @@ public class App {
         String[] answer = new String[n];
         Map<Integer,String>arr1AndArr2=new HashMap<>();
         for(int i=0;i<n;i++){
-            String two=tenToTwo(arr1[i]);
-            arr1AndArr2.put(i, two);
-            two=tenToTwo(arr2[i]);
-            String before=arr1AndArr2.get(i);
-            arr1AndArr2.replace(i,before+","+two);
+            String arr1Two=tenToTwo(arr1[i]);
+            String arr2Two=tenToTwo(arr2[i]);
+            if(arr1Two.length()<n){
+                int minus=n-arr1Two.length();
+                for(int ii=0;ii<minus;ii++){
+                    arr1Two="0"+arr1Two;
+                }
+            }
+            if(arr2Two.length()<n){
+                int minus=n-arr2Two.length();
+                for(int ii=0;ii<minus;ii++){
+                    arr2Two="0"+arr2Two;
+                }
+            }
+            System.out.println(arr1Two);
+            System.out.println(arr2Two);
         }
         System.out.println(arr1AndArr2.toString());
         return answer;
     }
     private static String tenToTwo(int num) {
-        return Integer.toString(num);
+        return Integer.toBinaryString(num);
     }
     
     
