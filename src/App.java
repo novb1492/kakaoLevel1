@@ -34,6 +34,15 @@ public class App {
             }
             System.out.println(arr1Two);
             System.out.println(arr2Two);
+            char[] arr1Chars=arr1Two.toCharArray();
+            char[] arr2Chars=arr2Two.toCharArray();
+            for(char arr1Char:arr1Chars){
+                for(char arr2Char:arr2Chars){
+                    if(arr1Char!=arr2Char){
+                        
+                    }
+                }
+            }
         }
         System.out.println(arr1AndArr2.toString());
         return answer;
@@ -41,6 +50,7 @@ public class App {
     private static String tenToTwo(int num) {
         return Integer.toBinaryString(num);
     }
+    
     
     
 }
