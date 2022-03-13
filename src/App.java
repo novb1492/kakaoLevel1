@@ -36,19 +36,12 @@ public class App {
             char[] arr1Chars=arr1Two.toCharArray();
             char[] arr2Chars=arr2Two.toCharArray();
             String line="";
-            for(char arr1Char:arr1Chars){
-                for(char arr2Char:arr2Chars){
-                    if(arr1Char!=arr2Char){
-                       if(arr1Char=='1'){
-
-                       }
-                    }else{
-                        if(arr1Char=='0'){
-                            line=line+" ";
-                        }else{
-                            line=line+"#";
-                        }
-                    }   
+            int len=arr1Chars.length;
+            for(int ii=0;ii<len;ii++){
+                if(arr1Chars[ii]=='1'||arr2Chars[ii]=='1'){
+                    line=line+"#";
+                }else{
+                    line=line+" ";
                 }
             }
             answer[i]=line;
