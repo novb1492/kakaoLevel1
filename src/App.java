@@ -15,8 +15,21 @@ public class App {
         System.out.println(Arrays.toString(solution(n,arr1,arr2)));
     }
     public static String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = {};
+        String[] answer = new String[n];
+        Map<Integer,String>arr1AndArr2=new HashMap<>();
+        int len=n;
+        for(int i=0;i<n;i++){
+            String two=tenToTwo(arr1[i]);
+            arr1AndArr2.put(i, two);
+            two=tenToTwo(arr2[i]);
+            String before=arr1AndArr2.get(i);
+            arr1AndArr2.replace(i,before+","+two);
+        }
+        System.out.println(arr1AndArr2.toString());
         return answer;
+    }
+    private static String tenToTwo(int num) {
+        return Integer.toString(num);
     }
     
     
