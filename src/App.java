@@ -16,7 +16,6 @@ public class App {
     }
     public static String[] solution(int n, int[] arr1, int[] arr2) {
         String[] answer = new String[n];
-        Map<Integer,String>arr1AndArr2=new HashMap<>();
         for(int i=0;i<n;i++){
             String arr1Two=tenToTwo(arr1[i]);
             String arr2Two=tenToTwo(arr2[i]);
@@ -36,15 +35,24 @@ public class App {
             System.out.println(arr2Two);
             char[] arr1Chars=arr1Two.toCharArray();
             char[] arr2Chars=arr2Two.toCharArray();
+            String line="";
             for(char arr1Char:arr1Chars){
                 for(char arr2Char:arr2Chars){
                     if(arr1Char!=arr2Char){
-                        
-                    }
+                       if(arr1Char=='1'){
+
+                       }
+                    }else{
+                        if(arr1Char=='0'){
+                            line=line+" ";
+                        }else{
+                            line=line+"#";
+                        }
+                    }   
                 }
             }
+            answer[i]=line;
         }
-        System.out.println(arr1AndArr2.toString());
         return answer;
     }
     private static String tenToTwo(int num) {
