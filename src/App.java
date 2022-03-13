@@ -10,53 +10,12 @@ import java.util.Map.Entry;
 public class App {
     public static void main(String[] args) throws Exception {
         int n=5;
-        int[] stages={2, 1, 2, 4, 2, 4, 3, 3};
-        System.out.println(Arrays.toString(solution(n,stages)));
+        int[] arr1={9, 20, 28, 18, 11};
+        int[] arr2={30, 1, 21, 17, 28};
+        System.out.println(Arrays.toString(solution(n,arr1,arr2)));
     }
-    public static int[] solution(int N, int[] stages) {
-        Map<Integer,Double>stageAndPersons=new HashMap<>();
-        for(int i=1;i<=N;i++){
-            int count=0;
-            int totalCount=0;
-            for(int ii:stages){
-                if(ii>=i){
-                    totalCount+=1;
-                }
-                if(ii==i){
-                    count+=1;
-                }
-            }
-            Double a=(double)count/totalCount;
-            if(a.isNaN()){
-                a=0.0;
-            }
-            stageAndPersons.put(i,a);
-        }
-        System.out.println(stageAndPersons.toString());
-        int[] answer = new int[N];
-        int postion=0;
-        for(Entry<Integer, Double> stageAndPerson:stageAndPersons.entrySet()){
-          //  System.out.println(stageAndPerson.getKey());
-           // System.out.println("value:"+stageAndPerson.getValue());
-            for(Entry<Integer, Double> s:stageAndPersons.entrySet()){
-                if(s.getKey()==stageAndPerson.getKey()){
-                    continue;
-                }
-               // System.out.println("skey: "+s.getKey());
-              //  System.out.println("value2:"+s.getValue());
-       
-                if(stageAndPerson.getValue()<s.getValue()){
-                    postion+=1;
-                }else if(stageAndPerson.getValue().equals(s.getValue())){
-                    if(s.getKey()<stageAndPerson.getKey()){
-                        postion+=1;
-                    }
-                }
-            }
-           // System.out.println("po: "+postion);
-            answer[postion]=stageAndPerson.getKey();
-            postion=0;
-        }
+    public static String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = {};
         return answer;
     }
     
