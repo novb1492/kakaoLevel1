@@ -9,8 +9,10 @@ import java.util.Map.Entry;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String dartResult="1S*2T*3S";
-        System.out.println(solution(dartResult));
+        String[] dartResult={"1D2S0T","1S*2T*3S"};
+        for( String s:dartResult){
+            System.out.println(solution(s));
+        }
     }
     public static int solution(String dartResult) {
         int answer = 0;
@@ -39,7 +41,7 @@ public class App {
            }
             
         }
-        //System.out.println(dartResultArr.toString());
+        System.out.println(dartResultArr.toString());
         for(int i=0;i<len;i++){
             String set=dartResultArr.get(i);
             if(set!=null){
@@ -65,8 +67,26 @@ public class App {
                     default:
                         break;
                 }
-                System.out.println(result);
+                if(bounus!='+'){
+                    if(bounus=='#'){
+                        result=result*-1;
+                    }else{
+                        result=result*2;
+                        if(i>0){
+                            int beforeNum=Integer.parseInt(dartResultArr.get(i-1));
+                            beforeNum=beforeNum*2;
+                            dartResultArr.put(i-1, Integer.toString(beforeNum));
+                        }
+                    }
+                    dartResultArr.put(i, Integer.toString(result));
+                }else{
+                    dartResultArr.put(i, Integer.toString(result));
+                }
             }
+        }
+        System.out.println(dartResultArr.toString());
+        for(Entry<Integer, String> s:dartResultArr.entrySet()){
+            answer=answer+Integer.parseInt(s.getValue());
         }
         return answer;
     }
