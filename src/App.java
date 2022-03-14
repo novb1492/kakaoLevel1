@@ -43,6 +43,7 @@ public class App {
         for(int i=0;i<len;i++){
             String set=dartResultArr.get(i);
             if(set!=null){
+                System.out.println(set);
                 char[] sets=set.toCharArray();
                 int num=Character.getNumericValue(sets[0]);
                 char action=sets[1];
@@ -53,13 +54,13 @@ public class App {
                 int result=0;
                 switch (action) {
                     case 'S':
-                    result=getResult(num, 1);
+                    result=(int) Math.pow(num,1);
                         break;
                     case 'D':
-                    result=getResult(num, 2);
+                    result=(int) Math.pow(num,2);
                         break;
                     case 'T':
-                    result=getResult(num, 3);
+                    result=(int) Math.pow(num,3);
                         break;
                     default:
                         break;
@@ -68,13 +69,6 @@ public class App {
             }
         }
         return answer;
-    }
-    private static int getResult(int num,int time) {
-        int originNum=num;
-        for(int i=0;i<=time;i++){
-          num=originNum*originNum;
-        }
-        return num;
     }
 
     
