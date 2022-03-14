@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String[] dartResult={"1D2S0T","1S*2T*3S"};
+        String[] dartResult={"1D2S#10S"};
         for( String s:dartResult){
             System.out.println(solution(s));
         }
@@ -31,13 +31,20 @@ public class App {
                 count=0;
             }else{
                 i=i-1;
-                count=-1;
+                count=0;
             }
             key+=1;
             sp="";
            }else{
                sp=sp+dartResults[i];
-               dartResultArr.put(key,sp);
+               if(i!=len-1){
+                   if(dartResults[i+1]=='0'&&dartResults[i]>=48&&dartResults[i]<=57){
+                    i+=1;
+                    sp=sp+"0";
+                   }
+               }
+               sp=sp+",";
+                dartResultArr.put(key,sp);
            }
             
         }
@@ -46,29 +53,29 @@ public class App {
             String set=dartResultArr.get(i);
             if(set!=null){
                 System.out.println(set);
-                char[] sets=set.toCharArray();
-                int num=Character.getNumericValue(sets[0]);
-                char action=sets[1];
-                char bounus='+';
+                String[] sets=set.split(",");
+                int num=Integer.parseInt(sets[0]);
+                String action=sets[1];
+                String bounus="+";
                 if(sets.length==3){
                     bounus=sets[2];
                 } 
                 int result=0;
                 switch (action) {
-                    case 'S':
+                    case "S":
                     result=(int) Math.pow(num,1);
                         break;
-                    case 'D':
+                    case "D":
                     result=(int) Math.pow(num,2);
                         break;
-                    case 'T':
+                    case "T":
                     result=(int) Math.pow(num,3);
                         break;
                     default:
                         break;
                 }
-                if(bounus!='+'){
-                    if(bounus=='#'){
+                if(!bounus.equals("+")){
+                    if(bounus.equals("#")){
                         result=result*-1;
                     }else{
                         result=result*2;
