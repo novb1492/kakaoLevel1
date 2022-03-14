@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String dartResult="1S2D*3T";
+        String dartResult="1S*2T*3S";
         System.out.println(solution(dartResult));
     }
     public static int solution(String dartResult) {
@@ -21,21 +21,24 @@ public class App {
         int count=0;
         String sp="";
         for(int i=0;i<len;i++){
-            count+=1;
-            if(count==3){
-                if(dartResults[i]!='*'&&dartResults[i]!='#'){
-                    dartResultArr.put(key, sp);
-                    i=i-1;
-                }else{
-                    sp=sp+dartResults[i];
-                    dartResultArr.put(key, sp);
-                }
-                key+=1;
-                sp="";
+           count+=1;
+           //System.out.println(count);
+           if(count==3){
+            if(dartResults[i]=='*'||dartResults[i]=='#'){
+                sp=sp+dartResults[i];
+                dartResultArr.put(key,sp);
                 count=0;
             }else{
-                sp=sp+dartResults[i];
+                i=i-1;
+                count=-1;
             }
+            key+=1;
+            sp="";
+           }else{
+               sp=sp+dartResults[i];
+               dartResultArr.put(key,sp);
+           }
+            
         }
         System.out.println(dartResultArr.toString());
         return answer;
