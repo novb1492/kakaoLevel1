@@ -14,6 +14,30 @@ public class App {
     }
     public static int solution(String dartResult) {
         int answer = 0;
+        char[] dartResults=dartResult.toCharArray();
+        int len=dartResults.length;
+        Map<Integer,String>dartResultArr=new HashMap<>();
+        int key=0;
+        int count=0;
+        String sp="";
+        for(int i=0;i<len;i++){
+            count+=1;
+            if(count==3){
+                if(dartResults[i]!='*'&&dartResults[i]!='#'){
+                    dartResultArr.put(key, sp);
+                    i=i-1;
+                }else{
+                    sp=sp+dartResults[i];
+                    dartResultArr.put(key, sp);
+                }
+                key+=1;
+                sp="";
+                count=0;
+            }else{
+                sp=sp+dartResults[i];
+            }
+        }
+        System.out.println(dartResultArr.toString());
         return answer;
     }
     
